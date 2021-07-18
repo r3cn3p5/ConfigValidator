@@ -2,7 +2,9 @@ plugins {
     id 'java'
 }
 
-group 'org.example'
+// Apply the plugin
+apply plugin:ConfigCheckerPlugin
+
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -10,10 +12,12 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-test {
-    useJUnitPlatform()
+ConfigCheckerSettings {
+    excludeDirectories = 'gemfire/autosys-config/gemfire-config.yaml'
 }
+
+
+
